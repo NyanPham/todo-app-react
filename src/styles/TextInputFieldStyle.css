@@ -1,0 +1,32 @@
+.input-form {
+    width: 100%;
+    display: flex;
+    gap: .5rem;
+}
+
+.input-field {
+    order: 2;
+    width: 100%;
+    font-size: 1rem;
+    padding: 0 1rem;
+    border: none;
+    background: none;
+    color: var(--button-blue);
+    border-bottom: 1px solid currentColor;
+    outline: none;
+    transition: 250ms ease;
+}
+.input-field:focus {
+    border-width: 2px;
+}
+
+.input-field::placeholder {
+    color: currentColor;
+    opacity: 0.5;
+}
+
+.submit-btn {
+    order: 1;
+    font-size: 2rem;
+    color: var(--button-blue);
+}
