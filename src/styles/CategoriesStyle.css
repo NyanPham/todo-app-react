@@ -5,6 +5,13 @@
     color: var(--text-black);
     box-shadow: 4px 6px 10px -1px rgba(0,0,0,.25);
     border-radius: .25rem;
+
+    transition: background-color, color, var(--theme-transition-duration) ease-in-out;
+}
+
+.dark .categories {
+    background-color: var(--black-blue);
+    color: var(--text-white);
 }
 
 .categories > h3 {
@@ -24,7 +31,11 @@
     transition: opacity 250ms ease-in-out;
 }
 
-.category:hover {
+.category.active-category {
+    color: var(--green);
+}
+
+.category:not(.active-category):hover {
     opacity: 0.5;
 }
 

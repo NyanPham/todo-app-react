@@ -19,7 +19,7 @@ export default function Categories(props) {
         <div className="categories">
             <h3>Categories</h3>
             <ul className="categories-list">
-                {categories.map((category, index) => {
+                {categories?.map((category, index) => {
                     return (
                         <li 
                             className={`category ${category.active ? 'active-category' : ''}`} //need styling later

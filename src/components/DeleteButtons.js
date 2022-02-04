@@ -3,7 +3,7 @@ import '../styles/DeleteButtonsStyle.css'
 import { ACTIONS } from '../hooks/useInput'
 
 export default function DeleteButtons({categories, dispatch}) {
-   const activeCategory = categories.find(category => category.active)
+   const activeCategory = categories?.find(category => category.active)
    function deleteList() {
       dispatch({
          type: ACTIONS.DELETE_LIST,

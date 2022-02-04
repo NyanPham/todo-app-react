@@ -1,49 +1,7 @@
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
+import useLocalStorage from './useLocalStorage'
 
-const initialState = {
-    categories: [
-        {
-            id: Date.now().toString(),
-            text: 'JavaScript',
-            active: true,
-            tasks: [
-                {
-                    id: '121121',
-                    text: 'Complete learning JavaScript concepts',
-                    complete: true
-                },
-                {
-                    id: '341322',
-                    text: 'Remake the Todo App',
-                    complete: false
-                },
-            ]
-        },
-        {
-            id: '2',
-            text: 'React',
-            active: false,
-            tasks: [
-                {
-                    id: 'daasa',
-                    text: 'Dance',
-                    complete: true
-                },
-                {
-                    id: '3413266',
-                    text: 'Testing',
-                    complete: false
-                },
-            ]
-        },
-        {
-            id: '3',
-            text: 'Japanese',
-            active: false,
-            tasks:[]
-        }
-    ]
-}
+const LOCAL_STORAGE_TODO_APP_STATE_KEY = 'nyan-todoapp.state_key'
 
 export const ACTIONS = {
     ADD_CATEGORY: 'add-list',
@@ -51,19 +9,24 @@ export const ACTIONS = {
     COMPLETE_TASK: 'complete-task',
     SELECT_CATEGORY: 'select-category',
     DELETE_LIST: 'delete-list',
-    CLEAR_COMPLETED: 'clear-completed'
+    CLEAR_COMPLETED: 'clear-completed',
+    UPDATE_ORDER: 'update-order',
+    CHANGE_THEME: 'change-theme'
 }
 
 function reducer(state, { type, payload }) {
     switch ( type ) {
-        case ACTIONS.ADD_CATEGORY :
+        case ACTIONS.ADD_CATEGORY : {
             return {
                 categories: [...state.categories, payload.newCategory]
             }
+        }
+            
         case ACTIONS.ADD_TASK: {
             const addedInCategory = state.categories.find(category => category.id === payload.categoryId)
             const newTasks = [...addedInCategory.tasks, payload.newTask]
             const newState = {
+                    ...state,
                     categories: state.categories.map(category => {
                     if (category.id === payload.categoryId) {
                         return {
@@ -90,6 +53,7 @@ function reducer(state, { type, payload }) {
                     }
                 })
                 const newState = {
+                    ...state,
                     categories: state.categories.map(category => {
                     if (category.id === payload.categoryId) {
                         return {
@@ -103,8 +67,10 @@ function reducer(state, { type, payload }) {
             }
             return newState
         }
+
         case ACTIONS.SELECT_CATEGORY: {
             const newState = {
+                ...state,
                 categories: state.categories.map(category => {
                     if (category.id === payload.categoryId) {
                         return {
@@ -124,11 +90,14 @@ function reducer(state, { type, payload }) {
         
         case ACTIONS.DELETE_LIST: {
             return {
+                ...state,
                 categories: state.categories.filter(category => category.id !== payload.categoryId)
             }
         }
+
         case ACTIONS.CLEAR_COMPLETED: {
             return {
+                ...state,
                 categories: state.categories.map(category => {
                     if (category.id === payload.categoryId) {
                         return {
@@ -141,14 +110,56 @@ function reducer(state, { type, payload }) {
                 })
             }
         }
+
+        case ACTIONS.UPDATE_ORDER: {
+            const orderedIds = Array.from(payload.orderedTasks).map(task => {
+                return task.querySelector('input').id
+            })
+            const oldCategory = state.categories.find(category => category.id === payload.categoryId)
+            const oldTasks = oldCategory.tasks
+            const newOrderedTasks = orderedIds.map(id => {
+                const correspondingTask = oldTasks.find(task => task.id === id)
+                return correspondingTask
+            })
+            const newState = {
+                ...state,
+                categories: state.categories.map(category => {
+                    if (category.id === payload.categoryId) {
+                        return {
+                            ...category,
+                            tasks: newOrderedTasks
+                        }
+                    } else {
+                        return category
+                    }
+                })
+            }
+            return newState
+        }
+
+        case ACTIONS.CHANGE_THEME: {
+            return {
+                ...state,
+                darkTheme: !state.darkTheme
+            }
+        }
+
         default: 
             return state
     }
 }
 
 export default function useInput() {
+    const { state: initialState, setState: setInitialState  } = useLocalStorage(LOCAL_STORAGE_TODO_APP_STATE_KEY, {
+        darkTheme: false,
+        categories: []
+    })
+
     const [state, dispatch] = useReducer(reducer, initialState)
 
+    useEffect(() => {
+        setInitialState(state)
+    }, [state])
 
     return { state, dispatch}
 }
