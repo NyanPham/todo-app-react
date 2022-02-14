@@ -6,11 +6,11 @@ import useInput, { ACTIONS } from '../hooks/useInput'
 function App() {
   const { state, dispatch } = useInput()
 
-  function handleThemeChange() {
-    dispatch({
-      type: ACTIONS.CHANGE_THEME,
-    })
-  }
+  // function handleThemeChange() {
+  //   dispatch({
+  //     type: ACTIONS.CHANGE_THEME,
+  //   })
+  // }
 
   return (
     <div className='todo-app dark'>

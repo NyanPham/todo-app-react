@@ -159,7 +159,7 @@ export default function useInput() {
 
     useEffect(() => {
         setInitialState(state)
-    }, [state])
+    }, [state, setInitialState])
 
     return { state, dispatch}
 }
