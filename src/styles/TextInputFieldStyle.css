@@ -17,7 +17,8 @@
     transition: 250ms ease;
 }
 .input-field:focus {
-    border-width: 2px;
+    border-width: 3px;
+    border-color: var(--green);
 }
 
 .input-field::placeholder {

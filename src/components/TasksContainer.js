@@ -3,6 +3,8 @@ import Task from './Task'
 import TextInputField from './TextInputField'
 import '../styles/TasksContainerStyle.css'
 import { ACTIONS } from '../hooks/useInput'
+import DeleteButtons from './DeleteButtons'
+
 
 export default function TasksContainer({categories, dispatch}) {
     const [taskType, setTaskType] = useState('all')
@@ -87,7 +89,7 @@ export default function TasksContainer({categories, dispatch}) {
                     <TextInputField name={'task'} placeholder="add new task" categoryId={activeCategory?.id} dispatch={dispatch}/>
                 </div>
 
-                
+                <DeleteButtons categories={categories}  dispatch={dispatch}/>
             </>}
         </div>
     )

@@ -17,7 +17,7 @@ export default function Categories(props) {
     }
     return (
         <div className="categories">
-            <h3>Tasks List</h3>
+            <h3>Lists</h3>
             <ul className="categories-list">
                 {categories?.map((category, index) => {
                     return (

@@ -33,6 +33,7 @@
 
 .category.active-category {
     color: var(--green);
+    font-size: 1.2em;
 }
 
 .category:not(.active-category):hover {

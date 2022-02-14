@@ -1,6 +1,5 @@
 import Categories from './Categories'
 import TasksContainer from './TasksContainer'
-import DeleteButtons from './DeleteButtons'
 import useInput from '../hooks/useInput'
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
       </button> */}
       <Categories categories={state.categories} dispatch={dispatch} />
       <TasksContainer categories={state.categories}  dispatch={dispatch}/>
-      <DeleteButtons categories={state.categories}  dispatch={dispatch}/>
     </div>
   );
 }
