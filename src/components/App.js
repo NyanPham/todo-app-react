@@ -1,7 +1,7 @@
 import Categories from './Categories'
 import TasksContainer from './TasksContainer'
 import DeleteButtons from './DeleteButtons'
-import useInput, { ACTIONS } from '../hooks/useInput'
+import useInput from '../hooks/useInput'
 
 function App() {
   const { state, dispatch } = useInput()
