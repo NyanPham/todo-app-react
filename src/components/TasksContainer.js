@@ -72,6 +72,11 @@ export default function TasksContainer({categories, dispatch}) {
                                             </p>
                         )}
                     </div>
+                    <div className="btn-grid" onClick={handleButtonClick}>  
+                        <button className={`all select ${taskType === 'all' ? 'chosen' : ''}`} name="all">All</button>    
+                        <button className={`active select ${taskType === 'active' ? 'chosen' : ''}`} name="active">Active</button>     
+                        <button className={`completed select ${taskType === 'completed' ? 'chosen' : ''}`} name="completed">Completed</button>    
+                    </div> 
                 </div>
                 <div className="tasks-container" onDragOver={handleDragOver} ref={containerRef}>
                     {chosenTasks && chosenTasks.map(task => {
@@ -82,11 +87,7 @@ export default function TasksContainer({categories, dispatch}) {
                     <TextInputField name={'task'} placeholder="add new task" categoryId={activeCategory?.id} dispatch={dispatch}/>
                 </div>
 
-                <div className="btn-grid" onClick={handleButtonClick}>  
-                        <button className={`all select ${taskType === 'all' ? 'chosen' : ''}`} name="all">All</button>    
-                        <button className={`active select ${taskType === 'active' ? 'chosen' : ''}`} name="active">Active</button>     
-                        <button className={`completed select ${taskType === 'completed' ? 'chosen' : ''}`} name="completed">Completed</button>    
-                </div> 
+                
             </>}
         </div>
     )

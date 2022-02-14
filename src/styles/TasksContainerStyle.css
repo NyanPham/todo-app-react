@@ -13,12 +13,12 @@
 }
 
 .list-header {
-    padding: 2rem;
     width: 100%;
     background-color: var(--black);
 }
 
 .category-data {
+    padding: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,11 +36,8 @@
 .select {
     color: var(--text-black);
     opacity: .8;
-    font-weight: bold;
-    padding: .5rem;
-    font-size: 1.1em;
-    border-radius: .5rem;
-
+    font-weight: thin;
+    font-size: 1.1rem;
     transition:  color var(--theme-transition-duration) ease-in-out;
 }
 
@@ -49,20 +46,23 @@
 }
 
 .task-input-field {
-    padding: 1rem 2rem;
+    padding: 2rem;
 }
 
 
 .btn-grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: space-evenly;
     align-items: center;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    border-top: 1px solid var(--black-blue);
+    padding: 1rem;
 }
 
 
 .select.chosen {
-    background-color: var(--green);
+    color: var(--green);
+    transform: scale(1.1);
+    font-weight: thin;
 }
 

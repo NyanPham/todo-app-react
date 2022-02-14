@@ -11,7 +11,7 @@ export const ACTIONS = {
     DELETE_LIST: 'delete-list',
     CLEAR_COMPLETED: 'clear-completed',
     UPDATE_ORDER: 'update-order',
-    CHANGE_THEME: 'change-theme'
+    // CHANGE_THEME: 'change-theme'
 }
 
 function reducer(state, { type, payload }) {
@@ -137,12 +137,12 @@ function reducer(state, { type, payload }) {
             return newState
         }
 
-        case ACTIONS.CHANGE_THEME: {
-            return {
-                ...state,
-                darkTheme: !state.darkTheme
-            }
-        }
+        // case ACTIONS.CHANGE_THEME: {
+        //     return {
+        //         ...state,
+        //         darkTheme: !state.darkTheme
+        //     }
+        // }
 
         default: 
             return state

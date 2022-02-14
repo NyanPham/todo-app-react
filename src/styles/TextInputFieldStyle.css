@@ -23,11 +23,12 @@
 .input-field::placeholder {
     color: currentColor;
     opacity: 0.5;
+    font-size: 1.2rem;
 }
 
 .submit-btn {
     order: 1;
-    font-size: 2rem;
+    font-size: 2.25rem;
     color: var(--button-blue);
     transform: scale(1);
     transition: opacity, transform, 250ms ease-in-out;

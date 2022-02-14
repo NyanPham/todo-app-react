@@ -27,7 +27,7 @@
     position: relative;
 }
 
-.task > label:hover {
+.task:not(.dragging) > label:hover {
     opacity: .8;
     transform: translateX(10px);
 }
